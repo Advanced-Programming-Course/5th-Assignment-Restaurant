@@ -1,3 +1,1 @@
 # Java-Class
-
-Hello World!
