@@ -25,7 +25,7 @@ public class Invoice {
     }
 
     public boolean addItem(Item item) {
-        if (state == 0) { // فقط در حال ثبت سفارش
+        if (state == -1) { // فقط در حال ثبت سفارش
             items.add(item);
             recalculateTotalPrice();
             return true;
@@ -36,7 +36,7 @@ public class Invoice {
     }
 
     public boolean removeItem(Item item) {
-        if (state == 0) { // فقط در حال ثبت سفارش
+        if (state == -1) { // فقط در حال ثبت سفارش
             for (Item existingItem : items) {
                 if (existingItem.getFood().equals(item.getFood())) {
                     items.remove(existingItem);
@@ -58,8 +58,8 @@ public class Invoice {
         return items; // لیست آیتم های فاکتور را برمی گرداند
     }
 
-    public float getTotalPrice() {
-        return totalPrice;
+    public int getTotalPrice() {
+        return (int)Math.ceil(totalPrice);
     }
 
     private void recalculateTotalPrice() {
@@ -68,7 +68,7 @@ public class Invoice {
             totalPrice += item.getCount() * item.getFood().getPrice();
         }
         totalPrice += totalPrice * TAX_RATE;
-        Math.ceil(totalPrice); // گرد کردن به بالا
+
     }
 
     @Override

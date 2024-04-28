@@ -7,7 +7,7 @@ public class Item {
     public Item(Food food, int count) {
         this.food = food;
         this.count = count;
-        this.description = ""; // Empty description
+        this.description = "_"; // Empty description
     }
 
     public Item(Food food, int count, String description) {
