@@ -9,6 +9,3 @@
 ### در نهایت با ارسال پول ریکوئست به صفحه تمرین کد شما تصحیح خواهد شد.
 
 ### موفق باشید :)
- boooos
-nemidanam etelai nadaram
-man aslkdfjlsa;dfkjfkasd
