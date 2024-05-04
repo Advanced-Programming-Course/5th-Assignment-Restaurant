@@ -10,6 +10,13 @@ public class Item {
         this.description = description;
     }
 
+    public Item(Food food, int count) {
+        this.food = food;
+        this.count = count;
+        // empty
+        this.description = "-";
+    }
+
     public Food getFood() {
         return food;
     }

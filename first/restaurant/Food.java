@@ -2,7 +2,7 @@ import java.util.Vector;
 
 public class Food {
 
-    private Vector<Food> menu = new Vector<>();
+    private static Vector<Food> menu = new Vector<>();
     private final String name;
     private final int price;
 

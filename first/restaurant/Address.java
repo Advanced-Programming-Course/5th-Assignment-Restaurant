@@ -7,7 +7,7 @@ public class Address {
     public Address(double latitude, double longitude, String writtenAddress) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.writtenAddress = writtenAddress;
+        this.written_address = writtenAddress;
     }
 
     public double getLatitude() {
@@ -27,11 +27,11 @@ public class Address {
     }
 
     public String getWritten_address() {
-        return writtenAddress;
+        return written_address;
     }
 
     public void setWrittenAddress(String written_address) {
-        this.writtenAddress = written_address;
+        this.written_address = written_address;
     }
 
     public double distanceFrom(Address Address2) {
@@ -39,6 +39,6 @@ public class Address {
         double lo_distance = this.longitude - Address2.longitude;
         double distance = Math.sqrt(Math.pow(la_distance, 2) + Math.pow(lo_distance, 2));
 
-        return distance;
+        return Math.round(distance * 100000.0) / 100000.0;
     }
 }
