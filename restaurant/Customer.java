@@ -6,7 +6,7 @@ public class Customer {
     public Customer(int number, String name, Address address) {
         this.number = number;
         this.name = name;
-        this.address = new Address(latitude, longitude, writtenAddress);
+        this.address = address;
     }
 
     public int getCustomerNumber() {

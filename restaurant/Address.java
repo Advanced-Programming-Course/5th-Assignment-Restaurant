@@ -1,7 +1,7 @@
 public class Address {
-    public double longitude;
-    public double latitude;
-    public String writtenAddress;
+    private double longitude;
+    private double latitude;
+    private String writtenAddress;
 
     public Address(double latitude, double longitude, String writtenAddress){
         this.latitude = latitude;
