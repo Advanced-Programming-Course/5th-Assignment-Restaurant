@@ -1,43 +1,52 @@
-در این مسئله باید قسمت‌هایی از یک اپلیکیشن مدیریت سفارشات رستوران را طبق دستور العمل داده شده پیاده‌سازی کنید.
+# `Address Class`
 
-# کلاس `Address`
-
-این کلاس نشان دهنده‌ی یک آدرس است و دارای دو attribute طول و عرض جغرافیایی ( `latitude` و `longitude`) از نوع `double` و یک `written_address` از نوع `string` است که آدرس نوشتاری را مشخص می‌کند و . همچنین دارای متدی به اسم `distance_from` است که یک شی `Address` دیگر را به عنوان ورودی گرفته و فاصله‌ی این دو نقطه روی نقشه را با استفاده از طول و عرض جغرافیایی آنها بر حسب کیلومتر به عنوان یک متغیر `double` بازگرداند. و همه‌ی اینها باید از خارج کلاس قابل دسترسی باشند.
-
-+ نکته: فاصله‌ی دو نقطه به کیلومتر از روی طول و عرض جغرافیایی آنها از فرمول زیر محاسبه می‌شود. lo نشان‌ دهنده‌ی طول جغرافیایی و la نشان‌دهنده‌ی عرض جغرافیایی می‌باشد.
+This class represents an address and has two attributes latitude and longitude of type double to represent the geographical coordinates, and a written_address of type string to represent the textual address. It also has a method called distance_from that takes another Address object as input and returns the distance between the two points on the map in kilometers as a double variable, calculated using the formula:
+  
 $$distance = \sqrt{(la_2 - la_1)^{2} + (lo_2 - lo_1)^{2}}$$
 
-# کلاس `Customer`
+* where lo represents the longitude and la represents the latitude.
 
-اشیا این کلاس نماینده‌ی مشتری‌ها در سیستم مدیریت سفارشات رستوران هستند. هر شی این کلاس یک شماره‌ی مشتری دارد که یک عدد طبیعی یونیک است و پس از ساخته‌شدن شی قابل تعویض نیست و تنها با متد `getCustomerNumber` قابل دسترسی است. همچنین این شماره باید به طور اتوماتیک موقع ساخته‌شدن شی تنظیم شود و برای هر مشتری جدید ساخته شده متفاوت باشد. همچنین برای هر مشتری یک `string` اسم باشد که با متد `getName` و `setName` قابل دسترسی است. و هر مشتری یک `Address` دارد که برای آن از کلاس آدرس تعریف شده در بالا استفاده می‌کنیم. و با `getAddress` و `setAddress` قابل دسترسی‌است.
+# `Customer Class`
 
-# کلاس `Food`
+The objects of this class represent customers in the restaurant order management system. Each instance of this class has a unique customer number, which is a natural number, that is set automatically when the object is created and cannot be changed after that. This customer number can only be accessed using the getCustomerNumber method. Additionally, each customer has a string name that can be accessed and set using the getName and setName methods. Each customer also has an Address object, which can be accessed and set using the getAddress and setAddress methods.
 
-هر شی از این کلاس نشان‌دهنده‌ی یک غذا در منو است. و باید یک `class variable`به نام `menu` (که یک `vector` از غذا است) برای این کلاس داشته باشیم، که هر شی‌ غذا که ساخته می‌شود به طور اتوماتیک در آن ذخیره شود. هر شی غذا دارای رشته‌ی `name` و عدد صحیح `price` است. این دو موقع ساخته‌شدن شی توسط constructor مقداردهی می‌شوند ولی بعد از آن قابل تغییر نیستند و با متد `getPrice` و `getName` صرفا قابل خواندن هستند. (به این فکر کنید که اگر یک متد setter در این سیستم برای قیمت غذا‌ها وجود داشته باشد، چه مشکلی ممکن است به وجود بیاید!)
+# `Food Class`
 
-# کلاس `Item`
+Each object of this class represents a dish on the menu. This class should have a class variable called menu, which is a vector (or list) of Food objects, and any new Food object created will be automatically added to this menu. Each Food object has a string name and an integer price that are set in the constructor and cannot be changed after that. These values can only be accessed using the getName and getPrice methods, respectively. (Consider the potential problems that might arise if there was a setter method for the food prices in this system!)
 
-هر شی این کلاس نشان دهنده‌ی یک آیتم سفارش است. هر شی `Item` دارای `food` است که از کلاس `Food` است که در بالا تعریف کردیم. و یک عدد طبیعی `count` که نشان دهنده‌ی فی است و همچنین یک `description` از نوع `string` که توضیحات اضافی در مورد این آیتم از سفارش را داراست. هر ۳ `attribute` در constructor مقداردهی می‌شوند. اما `description` می‌تواند خالی باشد. همچنین این ۳ پس از ساخته شدن شی فقط با متدهای `getFood` و `getCount` و `getDescription` قابل خوندن هستند و نباید قابل بازنویسی باشند.
+# `Item Class`
 
-# کلاس `Invoice`
+Each object of this class represents an item in an order. Each Item object has a food attribute of the Food class that we defined earlier. It also has a positive integer count that represents the quantity, and a description attribute of type string that contains additional information about the item in the order. All three attributes are initialized in the constructor. However, the description can be left empty. After the object is created, these three attributes can only be read using the getFood, getCount, and getDescription methods, and should not be modifiable.
 
-این کلاس نشان‌دهنده‌ی یک فاکتور است. هر فاکتور attributeای به نام `state` دارد که اگر صفر باشد نشان‌دهنده‌ی بودن سفارش در صف آماده‌سازی، اگر ۱ باشد نشان‌دهنده‌ی بودن سفارش در صف ارسال و اگر ۲ باشد نشان‌دهنده رسیدن سفارش به دست مشتری باشد همچنین اگر -۱ باشد، نشان‌دهنده‌ی این است که سفارش در حال ثبت است. و با متد `getState` قابل خواندن است ولی خارج از کلاس تعویض نمی‌شود. یک شی Costumer برای مشتری مربوط به این سفارش (با `getCustomer()‍` صرفا دریافت می‌شود).
+# `Invoice Class`
 
-+ مشتری، تنها ورودی لازم برای constructor این کلاس است.
+This class represents an invoice. Each invoice has an state attribute, which is an integer. If the state is 0, it means the order is in the preparation queue. If the state is 1, it means the order is in the shipping queue. If the state is 2, it means the order has been delivered to the customer. If the state is -1, it means the order is currently being placed. The getState() method can be used to read the state, but it cannot be changed outside the class.
 
-+ این کلاس باید یک متد `addItem(Item item)` داشته باشد، که یک `item` که در قسمت قبل تعریف کردیم را بگیرد و به آیتم‌های این فاکتور اضافه کند. این متد باید تنها زمانی کار کند، که در حال ثبت سفارش هستیم. در غیر این صورت باید `false` برگرداند. اگر آیتم به لیست آیتم‌های این سفارش اضافه شد، باید `true` برگرداند.
+Each Invoice object has a Customer object associated with it, which can be accessed using the getCustomer() method.
 
-+ این کلاس باید یک متد `removeItem(Item item)` داشته باشد، که یک `item` که در قسمت قبل تعریف کردیم را بگیرد و اگر در آیتم‌های این فاکتور وجود داشت، آن را حذف کند. (منظور از وجود داشتن این است که itemای با غذای مشابه در itemهای این سفارش وجود داشته باشد). این متد باید تنها زمانی کار کند، که در حال ثبت سفارش هستیم. در صورت نبودن در وضعیت ثبت سفارش یا وجود نداشتن این `item` در آیتم‌های این سفارش باید به نشانه‌ی انجام نشدن عملیات، `false` برگرداند. در صورت انجام شدن عملیات باید `true` برگرداند.
++ The only required input for the constructor of this class is the customer.
 
-+ متد `nextStage()` وضعیت سفارش را یک مرحله به جلو می‌برد.
++ This class should have an addItem(Item item) method, which takes an Item object (as defined in the previous part) and adds it to the items of this invoice. This method should only work when the order is being placed. Otherwise, it should return false. If the item is added to the list of items for this order, it should return true.
 
-+ متد `getTotalPrice` قیمت کل سفارش را به صورت یک ‍`integer` برمی‌گرداند. دقت کنید که قیمت کل سفارش برابر قیمت کل item‌ها به علاوه‌ی مالیات است و رو به بالا گرد می‌شود . نرخ مالیات باید به صورت یک `class variable` در این کلاس به صورت یک متغیر `float` به نام `tax_rate` ذخیره شود و مقدار آن همیشه برابر با 9.4 درصد و غیرقابل تغییر است.
++ This class should have a removeItem(Item item) method, which takes an Item object and removes it from the items of this invoice if it exists. (By "exists" we mean that there is an item with the same food in the items of this order.) This method should only work when the order is being placed. If the order is not in the placing state or the item does not exist in the items of this order, it should return false to indicate that the operation was not performed. If the operation is performed, it should return true.
 
-کلاس حداقل باید یک constructor داشته باشد، که با استفاده از اسم و آدرس یک شی مشتری بسازد.
++ The nextStage() method advances the order state by one stage.
 
-جواب را به صورت یک فایل zip ارسال کنید که در آن یک پوشه `restaurant` وجود دارد و در داخل آن فایل‌های `Address.java` , `Customer.java` , `Food.java` , `Item.java` , `Invoice.java` , `Restaurant.java` موجود باشد.
++ The getTotalPrice() method returns the total price of the order as an integer. Note that the total price of the order is equal to the total price of the items plus the tax, and it is rounded up. The tax rate should be stored as a class variable in this class as a float variable named tax_rate, and its value should always be 9.4% and unchangeable.
 
-## نمونه استفاده از برنامه (تابع main)
+The class should have at least one constructor that creates an Invoice object using the name and address of a Customer object.
+
+The zip file includes the following Java files within the restaurant folder:
+
+Address.java
+Customer.java
+Food.java
+Item.java
+Invoice.java
+Restaurant.java
+
+### Example (Main Function)
+
 ```
 public static void main(String[] args) {
     Address a1 = new Address(2, 3, "Lahijan");
@@ -91,7 +100,8 @@ public static void main(String[] args) {
     System.out.println("Total price: " + inv.getTotalPrice());
 }
 ```
-## خروجی نمونه
+
+#### Output
 ```
 --------------------------------------
 
